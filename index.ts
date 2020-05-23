@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { gearData } from './data';
+import { Item } from './prefabs/item';
 
 new Phaser.Game({
   scene: {
@@ -9,9 +9,12 @@ new Phaser.Game({
 });
 
 function preload(this: Phaser.Scene) {
-  this.load.image('gear', gearData);
+  this.load.image('gear', 'https://cdn.jsdelivr.net/gh/hscheuerle/typescript-c2azrr@master/assets/settings.png');
 }
 
 function create(this: Phaser.Scene) {
-  this.add.image(200, 200, 'gear');
+  const item = new Item(this);
+  this.add.existing(item);
+  const item2 = new Item(this);
+  this.add.existing(item2);
 }
