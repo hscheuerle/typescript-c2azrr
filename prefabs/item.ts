@@ -55,7 +55,11 @@ function consumeItem(this: Item, target: Phaser.GameObjects.Zone) {
 
     if (isClose) {
       this.scene.events.off("update", updateEvent);
-      target.parentContainer.destroy();
+      this.scene.events.once("update", () => {
+        if (target && target.parentContainer && target.parentContainer.destroy) {
+          target.parentContainer.destroy();
+        }
+      });
       return;
     }
 
